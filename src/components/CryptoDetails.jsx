@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HTMLReactParser from "html-react-parser";
 import { useParams } from "react-router-dom";
 import millify from "millify";
-import { Col, Row, Typography, Select } from "antd";
+import { Col, Row, Typography, Select, Spin } from "antd";
 import {
   MoneyCollectOutlined,
   DollarCircleOutlined,
@@ -34,7 +34,12 @@ const CryptoDetails = () => {
   });
   const cryptoDetails = data?.data?.coin;
 
-  if (isFetching) return "Loading...";
+  if (isFetching)
+    return (
+      <div className="loader">
+        <Spin />
+      </div>
+    );
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 

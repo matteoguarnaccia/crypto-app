@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Select, Typography, Row, Col, Avatar, Card } from "antd";
+import { Select, Typography, Row, Col, Avatar, Card, Spin } from "antd";
 import moment from "moment";
 
 import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
@@ -19,7 +19,12 @@ const News = ({ simplified }) => {
   });
   const { data } = useGetCryptosQuery(100);
 
-  if (!cryptoNews?.value) return "Loading...";
+  if (!cryptoNews?.value)
+    return (
+      <div className="loader">
+        <Spin />
+      </div>
+    );
 
   return (
     <Row gutter={[24, 24]}>

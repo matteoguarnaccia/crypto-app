@@ -1,6 +1,6 @@
 import React from "react";
 import millify from "millify";
-import { Typography, Row, Col, Statistic } from "antd";
+import { Typography, Row, Col, Statistic, Spin } from "antd";
 import { Link } from "react-router-dom";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
@@ -12,7 +12,12 @@ const Homepage = () => {
   const { data, isFetching } = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
 
-  if (isFetching) return "Loading...";
+  if (isFetching)
+    return (
+      <div className="loader">
+        <Spin />
+      </div>
+    );
 
   return (
     <>
